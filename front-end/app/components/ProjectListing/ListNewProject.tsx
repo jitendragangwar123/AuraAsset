@@ -59,12 +59,12 @@ const ListingProject: React.FC = () => {
     formData.append("token_name", tokenName);
     formData.append("no_of_tokens", noOfTokens);
 
-    images.forEach((image, index) => {
+    images.forEach((image) => {
       formData.append("images", image);
     });
 
     try {
-      const response = await fetch("https://flexi-mart-back-end.vercel.app/list-property", {
+      const response = await fetch("http://localhost:8000/list-property", {
         method: "POST",
         body: formData,
       });
@@ -72,6 +72,9 @@ const ListingProject: React.FC = () => {
       if (response.status === 200) {
         toast.success("Property listed successfully");
         router.push("/marketplace");
+      } else {
+        toast.error("Error listing property");
+        console.error("Error listing property:", await response.json());
       }
     } catch (error) {
       toast.error("Error listing property");
@@ -111,7 +114,7 @@ const ListingProject: React.FC = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
-                    Total Price
+                    Token Price
                   </label>
                   <input
                     type="number"
