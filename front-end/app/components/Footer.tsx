@@ -9,7 +9,7 @@ const Footer = () => {
               <div className="">
                 <Image
                   className="border border-transparent"
-                  src="/logo.png"
+                  src="/AAlogo.png"
                   alt="logo"
                   width={100}
                   height={100}
