@@ -41,7 +41,7 @@ const ListingProject: React.FC = () => {
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
 
-    if (files.length !== 4) {
+    if (files.length !== 1) {
       toast.error("You must upload exactly 4 images.");
       return;
     }
