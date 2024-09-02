@@ -2,14 +2,14 @@ import { HardhatUserConfig } from "hardhat/config"
 import "@nomicfoundation/hardhat-toolbox"
 import "@openzeppelin/hardhat-upgrades"
 import "@typechain/hardhat";
-// import "./tasks"
-// import "solidity-docgen"
+import "./tasks"
+import "solidity-docgen"
 
 
-// import * as dotenv from "dotenv"
-// dotenv.config()
+import * as dotenv from "dotenv"
+dotenv.config()
 
-// const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
+const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -33,15 +33,15 @@ const config: HardhatUserConfig = {
         url: "https://api-sepolia.arbiscan.io/api"
       }
     },
-    // sepolia: {
-    //   url: process.env.ARBITRUM_RPC_URL,
-    //   accounts: [`${process.env.PRIVATE_KEY}`,`${process.env.PRIVATE_KEY_FRAXN}`]
-    // },
-    // devnet: {
-    //   url: "",
-    //   chainId: 713715,
-    //   accounts: [PRIVATE_KEY]
-    // }
+    sepolia: {
+      url: process.env.ARBITRUM_RPC_URL,
+      accounts: [`${process.env.PRIVATE_KEY}`,`${process.env.PRIVATE_KEY_AURA}`]
+    },
+    devnet: {
+      url: "",
+      chainId: 713715,
+      accounts: [PRIVATE_KEY]
+    }
   },
   sourcify: {
     enabled: false
@@ -74,11 +74,11 @@ const config: HardhatUserConfig = {
       }
     ]
   },
-  // docgen: {
-  //   outputDir: "./docs",
-  //   pages: "files",
-  //   collapseNewlines: true
-  // }
+  docgen: {
+    outputDir: "./docs",
+    pages: "files",
+    collapseNewlines: true
+  }
 }
 
 export default config

@@ -1,0 +1,26 @@
+{
+    "sepolia": {
+        "AuraAssetUSDC": "0x6427E8BAfd676c72313e030Be0198174762b4714",
+        "Deposit": "0xf3E893849AF62f490f821deFB77bc47Fd2c93a5c",
+        "DiamondLoupeFacet": "0x693f3769b54f8e0AE6Bb8c30D0B50EfeD8C095b8",
+        "OwnershipFacet": "0x8E6fd2E99a0275F3D31dABdaD9139E95C2E28c32",
+        "DiamondCutFacet": "0xBcCC85861a20629870a48e620536785AB02D1A96",
+        "DiamondInit": "0x785c6B8151881e72dfc6818A9b08780aDA6A8F1D",
+        "Diamond": "0xf601726b6ae2c56f13a120B12271b0095E780eC1",
+        "AuraAssetRegistryFacet": "0xb3f88EAa191f30ed21363387Df6D413DDC1e08d3",
+        "AuraAssetViewFacet": "0x82e4E8FEf313969FC146e6aB5231BD23ca7e1483",
+        "StartBlock": 70891808
+    },
+    "localhost": {
+        "AuraAssetUSDC": "0x6427E8BAfd676c72313e030Be0198174762b4714",
+        "Deposit": "0xf3E893849AF62f490f821deFB77bc47Fd2c93a5c",
+        "DiamondLoupeFacet": "0x693f3769b54f8e0AE6Bb8c30D0B50EfeD8C095b8",
+        "OwnershipFacet": "0x8E6fd2E99a0275F3D31dABdaD9139E95C2E28c32",
+        "DiamondCutFacet": "0xBcCC85861a20629870a48e620536785AB02D1A96",
+        "DiamondInit": "0x785c6B8151881e72dfc6818A9b08780aDA6A8F1D",
+        "Diamond": "0xf601726b6ae2c56f13a120B12271b0095E780eC1",
+        "AuraAssetRegistryFacet": "0xb3f88EAa191f30ed21363387Df6D413DDC1e08d3",
+        "AuraAssetViewFacet": "0x82e4E8FEf313969FC146e6aB5231BD23ca7e1483",
+        "StartBlock": 70891808
+    }
+}
