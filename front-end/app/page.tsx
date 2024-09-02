@@ -32,7 +32,7 @@ export default function Home() {
             <p className="text-lg md:text-2xl lg:text-xl text-gray-600 dark:text-gray-400 animate-fadeInDelay transition duration-700 ease-in-out transform hover:scale-105">
               Empowering Investments Through Tokenization of Real-World Assets
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-4 z-0">
               <Link
                 href="https://github.com/jitendragangwar123/AuraAsset"
                 legacyBehavior
@@ -44,7 +44,7 @@ export default function Home() {
                   </span>
                 </a>
               </Link>
-              <Link href="/marketplace" legacyBehavior>
+              <Link href="/market-place" legacyBehavior>
                 <a className="flex justify-center items-center gap-2 px-4 py-2 text-sm bg-white text-black rounded-md font-medium border-2 border-blue-600 shadow-md hover:bg-blue-600 hover:shadow-lg active:bg-white active:shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-700 ease-in-out">
                   <span>Start Exploring</span>
                   <span>
@@ -68,7 +68,7 @@ export default function Home() {
 
         <div className="mb-25 grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-center lg:text-left lg:max-w-5xl">
           <a
-            href="/marketplace"
+            href="/market-place"
             className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
             target="_blank"
             rel="noopener noreferrer"
@@ -83,7 +83,7 @@ export default function Home() {
             </p>
           </a>
           <a
-            href="/projectListing"
+            href="/project-listing"
             className="group rounded-lg border border-transparent px-3 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
             target="_blank"
             rel="noopener noreferrer"

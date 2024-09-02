@@ -37,8 +37,8 @@ const ListingProject: React.FC = () => {
   });
   const [tokenName, setTokenName] = useState<string>("");
   const [noOfTokens, setNoOfTokens] = useState<string>("");
-  const [apy, setApy] = useState<string>(""); // State for APY
-  const [propertyType, setPropertyType] = useState<string>(""); // State for Property Type
+  const [apy, setApy] = useState<string>(""); 
+  const [propertyType, setPropertyType] = useState<string>(""); 
 
   const router = useRouter();
 
@@ -62,8 +62,8 @@ const ListingProject: React.FC = () => {
     formData.append("location", JSON.stringify(location));
     formData.append("token_name", tokenName);
     formData.append("no_of_tokens", noOfTokens);
-    formData.append("apy", apy); // Append APY to FormData
-    formData.append("property_type", propertyType); // Append Property Type to FormData
+    formData.append("apy", apy); 
+    formData.append("property_type", propertyType); 
 
     images.forEach((image) => {
       formData.append("images", image);
@@ -162,7 +162,6 @@ const ListingProject: React.FC = () => {
                   />
                 </div>
 
-                {/* APY Field */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
                     APY
@@ -178,7 +177,6 @@ const ListingProject: React.FC = () => {
                   />
                 </div>
 
-                {/* Property Type Field */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
                     Property Type
