@@ -9,14 +9,17 @@ exports.welcomeMsg = async (req, res) => {
 
 exports.listProperty = async (req, res) => {
     try {
-        const { title, desc, total_price, location, token_name, no_of_tokens } = req.body;
+        const { title, desc, total_price, location, token_name, no_of_tokens, apy, property_type } = req.body;
+
         const uploadPromises = req.files.map((file) => {
             return cloudinary.uploader.upload(file.path, {
                 upload_preset: "auraAsset",
             });
         });
+
         const uploadedResponses = await Promise.all(uploadPromises);
         const imageUrls = uploadedResponses.map(response => response.secure_url);
+
         const newProperty = new PropertyData({
             title,
             desc,
@@ -25,8 +28,9 @@ exports.listProperty = async (req, res) => {
             location: JSON.parse(location),
             token_name,
             no_of_tokens,
+            apy, 
+            property_type, 
         });
-
 
         await newProperty.save();
         res.status(200).json({ message: "Property listed successfully" });

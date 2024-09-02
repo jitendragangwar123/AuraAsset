@@ -19,10 +19,12 @@ type PropertyData = {
   location: Location;
   token_name: string;
   no_of_tokens: string;
+  apy: string;
+  property_type: string;
 };
 
 const ListingProject: React.FC = () => {
-  const { isConnected, address } = useAccount();
+  const { isConnected } = useAccount();
   const [title, setTitle] = useState<string>("");
   const [desc, setDesc] = useState<string>("");
   const [totalPrice, setTotalPrice] = useState<string>("");
@@ -35,6 +37,8 @@ const ListingProject: React.FC = () => {
   });
   const [tokenName, setTokenName] = useState<string>("");
   const [noOfTokens, setNoOfTokens] = useState<string>("");
+  const [apy, setApy] = useState<string>(""); // State for APY
+  const [propertyType, setPropertyType] = useState<string>(""); // State for Property Type
 
   const router = useRouter();
 
@@ -42,7 +46,7 @@ const ListingProject: React.FC = () => {
     const files = Array.from(e.target.files || []);
 
     if (files.length !== 1) {
-      toast.error("You must upload exactly 4 images.");
+      toast.error("You must upload exactly one image.");
       return;
     }
 
@@ -58,6 +62,8 @@ const ListingProject: React.FC = () => {
     formData.append("location", JSON.stringify(location));
     formData.append("token_name", tokenName);
     formData.append("no_of_tokens", noOfTokens);
+    formData.append("apy", apy); // Append APY to FormData
+    formData.append("property_type", propertyType); // Append Property Type to FormData
 
     images.forEach((image) => {
       formData.append("images", image);
@@ -153,6 +159,36 @@ const ListingProject: React.FC = () => {
                     className="mt-1 block w-full h-[40px] bg-gray-100 text-black rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     required
                     min={1}
+                  />
+                </div>
+
+                {/* APY Field */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    APY
+                  </label>
+                  <input
+                    type="number"
+                    value={apy}
+                    onChange={(e) => setApy(e.target.value)}
+                    className="mt-1 block w-full h-[40px] bg-gray-100 text-black rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    required
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
+
+                {/* Property Type Field */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Property Type
+                  </label>
+                  <input
+                    type="text"
+                    value={propertyType}
+                    onChange={(e) => setPropertyType(e.target.value)}
+                    className="mt-1 block w-full h-[40px] bg-gray-100 text-black rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    required
                   />
                 </div>
               </div>
@@ -256,18 +292,22 @@ const ListingProject: React.FC = () => {
                 </div>
               </div>
 
-              <button
-                type="submit"
-                className="w-full py-3 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                List Property
-              </button>
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  className="inline-block px-6 py-2 mt-4 text-white bg-indigo-600 rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                >
+                  List Property
+                </button>
+              </div>
             </form>
           </>
         ) : (
-          <p className="text-center text-lg font-medium text-gray-800">
-            Please connect your wallet to list a property.
-          </p>
+          <div className="text-center">
+            <p className="text-xl text-gray-700 mb-4">
+              Please connect your wallet to list a property.
+            </p>
+          </div>
         )}
       </div>
     </div>
