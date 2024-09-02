@@ -20,7 +20,7 @@ const Header = () => {
             <div className="">
               <Image
                 className="border border-transparent"
-                src="/AAlogo.png"
+                src="/logo.png"
                 alt="logo"
                 width={90}
                 height={70}

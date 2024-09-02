@@ -13,6 +13,13 @@ export default function Home() {
   return (
     <main className="">
       <Header />
+      <div
+        className="absolute inset-0 bg-cover bg-center z-0"
+        style={{
+          backgroundImage: 'url("/background.gif")',
+          filter: "blur(6px)",
+        }}
+      ></div>
       <div className="flex min-h-screen flex-col font-serif items-center justify-center py-14 mt-14 bg-gradient-to-b from-blue-100 to-blue-300 dark:from-gray-800 dark:to-gray-900">
         <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-6xl gap-16 mb-5 text-center lg:text-left">
           <div className="flex flex-col gap-6 w-full lg:w-1/2">

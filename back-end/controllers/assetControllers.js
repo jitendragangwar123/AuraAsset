@@ -3,7 +3,7 @@ const PropertyData = require("../models/propertySchema");
 
 
 exports.welcomeMsg = async (req, res) => {
-    res.status(200).json({ message: "Welcome to Aura Asset Application!" });
+    res.status(200).json({ message: "Welcome to Aura Asset!" });
 };
 
 
@@ -29,8 +29,6 @@ exports.listProperty = async (req, res) => {
 
 
         await newProperty.save();
-
-
         res.status(200).json({ message: "Property listed successfully" });
     } catch (error) {
         console.error("Error listing property:", error);
