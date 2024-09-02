@@ -29,7 +29,8 @@ exports.listProperty = async (req, res) => {
             token_name,
             no_of_tokens,
             apy, 
-            property_type, 
+            property_type,
+            status:"available"
         });
 
         await newProperty.save();
