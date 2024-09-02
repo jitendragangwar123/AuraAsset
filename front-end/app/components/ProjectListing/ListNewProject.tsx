@@ -64,7 +64,7 @@ const ListingProject: React.FC = () => {
     });
 
     try {
-      const response = await fetch("http://localhost:8000/list-property", {
+      const response = await fetch("https://aura-asset-back-end.vercel.app/list-property", {
         method: "POST",
         body: formData,
       });

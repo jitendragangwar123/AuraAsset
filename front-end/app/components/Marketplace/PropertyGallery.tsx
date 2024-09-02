@@ -133,7 +133,7 @@ const PropertyGallery: React.FC = () => {
    const fetchProperties = async () => {
      try {
        const response = await fetch(
-         "https://flexi-mart-back-end.vercel.app/getPropertyDatails"
+         "https://aura-asset-back-end.vercel.app/get-property-details"
        );
        const data = await response.json();
        setProperties(data);

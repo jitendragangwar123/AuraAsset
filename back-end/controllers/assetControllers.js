@@ -3,7 +3,7 @@ const PropertyData = require("../models/propertySchema");
 
 
 exports.welcomeMsg = async (req, res) => {
-    res.status(200).json({ message: "Welcome to FlexiMart Application!" });
+    res.status(200).json({ message: "Welcome to Aura Asset Application!" });
 };
 
 

@@ -13,8 +13,8 @@ const upload = multer({
 router
     .get("/", assetController.welcomeMsg)
     .post("/list-property", upload.array("images", 4), assetController.listProperty)
-    .get("/getPropertyDatails", assetController.getPropertyDatails)
-    .get("/getPropertyDatailsByTitle", assetController.getPropertyDatailsByTitle)
+    .get("/get-property-details", assetController.getPropertyDatails)
+    .get("/get-property-details-by-title", assetController.getPropertyDatailsByTitle)
 
 
 module.exports = router;
