@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="w-full fixed backdrop-blur-2xl font-serif font-bold light:border-neutral-800 lg:bg-gray-600 lg:light:bg-zinc-800/50 left-0 top-0 z-10 flex flex-wrap gap-4 py-2 px-2 md:py-1 md:px-10 justify-between items-center">
+      <header className="w-full fixed backdrop-blur-2xl font-serif font-bold light:border-neutral-800 lg:bg-blue-800 lg:light:bg-zinc-800/50 left-0 top-0 z-10 flex flex-wrap gap-4 py-2 px-2 md:py-1 md:px-10 justify-between items-center">
         <div className="flex items-center gap-4">
           <a href="/">
             <div className="">
