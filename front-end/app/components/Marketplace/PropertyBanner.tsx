@@ -13,7 +13,7 @@ const TokenizationBanner: React.FC<TokenizationBannerProps> = ({ backgroundImage
             className="relative h-96 bg-cover bg-center mt-14"
             style={{ backgroundImage: `url(${backgroundImage})` }}
         >
-            <div className="absolute inset-0 bg-black opacity-70"></div>
+            <div className="absolute inset-0 bg-black opacity-50"></div>
             <div className="absolute inset-0 flex items-center justify-center text-center px-6">
                 <div className="relative z-0 max-w-3xl">
                     <h1 className="text-4xl font-extrabold mb-6 leading-tight text-gradient">

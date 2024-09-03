@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Select, { SingleValue, StylesConfig } from "react-select";
 import { FaMapMarkerAlt, FaDollarSign } from "react-icons/fa";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type OptionType = {
   value: string;
@@ -28,39 +28,6 @@ type PropertyCardProps = {
   status: string;
 };
 
-const customStyles: StylesConfig<OptionType, false> = {
-  control: (provided) => ({
-    ...provided,
-    backgroundColor: "#f0f0f0",
-    borderColor: "#ccc",
-    "&:hover": {
-      borderColor: "#888",
-    },
-  }),
-  menu: (provided) => ({
-    ...provided,
-    backgroundColor: "#fff",
-    borderRadius: "4px",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-  }),
-  option: (provided, state) => ({
-    ...provided,
-    backgroundColor: state.isSelected
-      ? "#007bff"
-      : state.isFocused
-      ? "#e2e6ea"
-      : "#fff",
-    color: state.isSelected ? "#fff" : "#333",
-    "&:hover": {
-      backgroundColor: "#e2e6ea",
-    },
-  }),
-  singleValue: (provided) => ({
-    ...provided,
-    color: "#333",
-  }),
-};
-
 const PropertyCard: React.FC<PropertyCardProps> = ({
   title,
   desc,
@@ -72,6 +39,13 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
   apy,
   status,
 }) => {
+  const router = useRouter();
+  const handleViewDetails = (id: string) => {
+    if (status !== "sold out") {
+      router.push(`/market-place/${encodeURIComponent(id)}`);
+    }
+  };
+
   return (
     <div className="max-w-sm rounded-lg mt-5 mb-10 ml-5 font-serif overflow-hidden shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl border-2 border-gray-300">
       {images.length > 0 && (
@@ -92,7 +66,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
         <p className="text-gray-500 text-base mb-4">{desc}</p>
         <div className="flex items-center justify-between mb-2">
           <div>
-            <span className="text-gray-400">Token Price</span>
+            <span className="text-gray-400">Price</span>
           </div>
           <div>
             <span className="text-gray-400">Total Supply</span>
@@ -109,20 +83,21 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
           <div className="flex items-center">
             <span className="font-bold text-xl">{no_of_tokens}</span>
           </div>
+          <div className="flex items-center">
+            <span className="font-bold text-xl">{apy}%</span>
+          </div>
         </div>
-
-        <div className="flex items-center">
-          <span className="font-bold text-xl">{apy}%</span>
-        </div>
-
-        <Link href="/purchase-assets" legacyBehavior>
-          <button
-            className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300"
-            disabled={status === "sold out"}
-          >
-            {status === "sold out" ? "Sold Out" : "View Details"}
-          </button>
-        </Link>
+        <button
+          onClick={() => handleViewDetails(title)}
+          className={`w-full ${
+            status === "sold out"
+              ? "bg-gray-400"
+              : "bg-blue-500 hover:bg-blue-700"
+          } text-white font-bold py-2 px-4 rounded transition duration-300`}
+          disabled={status === "sold out"}
+        >
+          {status === "sold out" ? "Sold Out" : "View Details"}
+        </button>
       </div>
     </div>
   );
@@ -150,10 +125,6 @@ const PropertyGallery: React.FC = () => {
     fetchProperties();
   }, []);
 
-  const handleDropdownChange = (option: SingleValue<OptionType>) => {
-    setSelectedOption(option);
-  };
-
   const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedRadio(e.target.value);
   };
@@ -165,29 +136,11 @@ const PropertyGallery: React.FC = () => {
     );
   });
 
-  const options: OptionType[] = [
-    { value: "Residentials", label: "Residentials" },
-    { value: "Villas", label: "Villas" },
-    { value: "Offices", label: "Offices" },
-    { value: "Commercial", label: "Commercial" },
-    { value: "Others", label: "Others" },
-  ];
-
   return (
     <div>
       <div className="flex flex-col md:flex-row justify-start mt-10 mb-5 space-y-4 md:space-y-0 md:space-x-10">
-        <div className="w-full ml-10 md:w-1/6">
-          <Select
-            id="dropdown"
-            value={selectedOption}
-            onChange={handleDropdownChange}
-            options={options}
-            styles={customStyles}
-            className="w-full"
-          />
-        </div>
-        <div className="flex flex-row gap-4">
-          <div className="flex items-center">
+        <div className="flex flex-row ml-10 gap-4">
+          <div className="flex items-center z-0">
             <input
               type="radio"
               id="available"
@@ -204,7 +157,7 @@ const PropertyGallery: React.FC = () => {
               Available
             </label>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center z-0">
             <input
               type="radio"
               id="sold-out"
