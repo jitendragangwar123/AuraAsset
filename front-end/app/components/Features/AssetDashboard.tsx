@@ -24,7 +24,7 @@ const AssetDashboard = () => {
                 
                 <div className="relative col-start-1 row-start-1 w-90 rounded-[8px] shadow-lg overflow-hidden">
                     <img
-                        src="/portfolio.png"
+                        src="/property.png"
                         alt="Schema"
                         className="w-full h-full object-cover dark-img"
                     />

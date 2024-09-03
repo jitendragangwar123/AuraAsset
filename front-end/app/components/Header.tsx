@@ -35,7 +35,7 @@ const Header = () => {
           </Link>
           <Link href="/project-listing" legacyBehavior>
             <a className="text-gery-300 text-xl mr-2 hover:underline">
-              Project Owner
+              List Property
             </a>
           </Link>
           <Link href="/portfolio" legacyBehavior>

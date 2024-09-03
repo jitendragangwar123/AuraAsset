@@ -37,8 +37,8 @@ const ListingProject: React.FC = () => {
   });
   const [tokenName, setTokenName] = useState<string>("");
   const [noOfTokens, setNoOfTokens] = useState<string>("");
-  const [apy, setApy] = useState<string>(""); 
-  const [propertyType, setPropertyType] = useState<string>(""); 
+  const [apy, setApy] = useState<string>("");
+  const [propertyType, setPropertyType] = useState<string>("");
 
   const router = useRouter();
 
@@ -62,22 +62,25 @@ const ListingProject: React.FC = () => {
     formData.append("location", JSON.stringify(location));
     formData.append("token_name", tokenName);
     formData.append("no_of_tokens", noOfTokens);
-    formData.append("apy", apy); 
-    formData.append("property_type", propertyType); 
+    formData.append("apy", apy);
+    formData.append("property_type", propertyType);
 
     images.forEach((image) => {
       formData.append("images", image);
     });
 
     try {
-      const response = await fetch("https://aura-asset-back-end.vercel.app/list-property", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://aura-asset-back-end.vercel.app/list-property",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (response.status === 200) {
         toast.success("Property listed successfully");
-        router.push("/marketplace");
+        router.push("/market-place");
       } else {
         toast.error("Error listing property");
         console.error("Error listing property:", await response.json());
@@ -89,64 +92,64 @@ const ListingProject: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gray-200">
+    <div className="relative min-h-screen flex items-center justify-center">
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 w-full h-full bg-cover bg-center"
         style={{
-          backgroundImage: 'url("/img1.jpg")',
-          filter: "blur(4px)",
+          backgroundImage: 'url("/background.gif")',
+          filter: "blur(6px)",
         }}
       ></div>
-      <div className="relative max-w-2xl w-full mx-auto p-8 mt-[90px] mb-[20px] bg-gray-200 bg-opacity-90 rounded-lg shadow-lg">
+      <div className="relative max-w-3xl w-full mx-auto p-8 mt-[100px] mb-[40px] bg-gray-300 bg-opacity-95 rounded-xl shadow-xl">
         {isConnected ? (
           <>
-            <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+            <h2 className="text-4xl font-extrabold mb-8 text-center text-blue-600">
               List a New Property
             </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Title
+                  <label className="block text-md font-medium text-gray-800">
+                    Property Name
                   </label>
                   <input
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className="mt-1 block w-full h-[40px] bg-gray-100 text-black rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full h-[40px] bg-gray-100 text-gray-900 rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 sm:text-md transition duration-200 ease-in-out"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-md font-medium text-gray-800">
                     Token Price
                   </label>
                   <input
                     type="number"
                     value={totalPrice}
                     onChange={(e) => setTotalPrice(e.target.value)}
-                    className="mt-1 block w-full h-[40px] bg-gray-100 text-black rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full h-[40px] bg-gray-100 text-gray-900 rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 sm:text-md transition duration-200 ease-in-out"
                     required
                     min="1"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-md font-medium text-gray-800">
                     Token Name
                   </label>
                   <input
                     type="text"
                     value={tokenName}
                     onChange={(e) => setTokenName(e.target.value)}
-                    className="mt-1 block w-full h-[40px] bg-gray-100 text-black rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full h-[40px] bg-gray-100 text-gray-900 rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 sm:text-md transition duration-200 ease-in-out"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-md font-medium text-gray-800">
                     Number of Tokens
                   </label>
                   <input
@@ -156,21 +159,21 @@ const ListingProject: React.FC = () => {
                       const value = Math.max(0, Number(e.target.value));
                       setNoOfTokens(value.toString());
                     }}
-                    className="mt-1 block w-full h-[40px] bg-gray-100 text-black rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full h-[40px] bg-gray-100 text-gray-900 rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 sm:text-md transition duration-200 ease-in-out"
                     required
                     min={1}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-md font-medium text-gray-800">
                     APY
                   </label>
                   <input
                     type="number"
                     value={apy}
                     onChange={(e) => setApy(e.target.value)}
-                    className="mt-1 block w-full h-[40px] bg-gray-100 text-black rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full h-[40px] bg-gray-100 text-gray-900 rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 sm:text-md transition duration-200 ease-in-out"
                     required
                     min="0"
                     step="0.01"
@@ -178,34 +181,34 @@ const ListingProject: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-md font-medium text-gray-800">
                     Property Type
                   </label>
                   <input
                     type="text"
                     value={propertyType}
                     onChange={(e) => setPropertyType(e.target.value)}
-                    className="mt-1 block w-full h-[40px] bg-gray-100 text-black rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full h-[40px] bg-gray-100 text-gray-900 rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 sm:text-md transition duration-200 ease-in-out"
                     required
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-md font-medium text-gray-800">
                   Description
                 </label>
                 <textarea
                   value={desc}
                   onChange={(e) => setDesc(e.target.value)}
-                  className="mt-1 block w-full h-[100px] bg-gray-100 text-black rounded-md px-3 py-2 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  className="mt-1 block w-full h-[100px] bg-gray-100 text-gray-900 rounded-md px-3 py-2 border border-gray-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 sm:text-md transition duration-200 ease-in-out"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Images
+                <label className="block text-md font-medium text-gray-800">
+                  Image
                 </label>
                 <input
                   type="file"
@@ -213,24 +216,33 @@ const ListingProject: React.FC = () => {
                   multiple
                   accept="image/*"
                   onChange={handleImageUpload}
-                  className="mt-1 block w-full shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  className="mt-1 block w-full shadow-sm focus:border-indigo-600 focus:ring-indigo-600 sm:text-md"
                   required
                 />
                 <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
                   {images.map((image, index) => (
-                    <img
-                      key={index}
-                      src={URL.createObjectURL(image)}
-                      alt={`preview ${index}`}
-                      className="w-full h-auto rounded-lg"
-                    />
+                    <div key={index} className="relative">
+                      <img
+                        src={URL.createObjectURL(image)}
+                        alt={`Property Image ${index + 1}`}
+                        className="w-full h-24 object-cover rounded-lg shadow-md"
+                      />
+                      <button
+                        type="button"
+                        className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1 focus:outline-none hover:bg-red-600 transition duration-200 ease-in-out"
+                        onClick={() =>
+                          setImages(images.filter((_, i) => i !== index))
+                        }
+                      >
+                        &times;
+                      </button>
+                    </div>
                   ))}
                 </div>
               </div>
-
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-md font-medium text-gray-800">
                     Address
                   </label>
                   <input
@@ -239,13 +251,12 @@ const ListingProject: React.FC = () => {
                     onChange={(e) =>
                       setLocation({ ...location, address: e.target.value })
                     }
-                    className="mt-1 block w-full h-[40px] bg-gray-100 text-black rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full h-[40px] bg-gray-100 text-gray-900 rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 sm:text-md transition duration-200 ease-in-out"
                     required
                   />
                 </div>
-
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-md font-medium text-gray-800">
                     City
                   </label>
                   <input
@@ -254,13 +265,12 @@ const ListingProject: React.FC = () => {
                     onChange={(e) =>
                       setLocation({ ...location, city: e.target.value })
                     }
-                    className="mt-1 block w-full h-[40px] bg-gray-100 text-black rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full h-[40px] bg-gray-100 text-gray-900 rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 sm:text-md transition duration-200 ease-in-out"
                     required
                   />
                 </div>
-
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-md font-medium text-gray-800">
                     State
                   </label>
                   <input
@@ -269,13 +279,12 @@ const ListingProject: React.FC = () => {
                     onChange={(e) =>
                       setLocation({ ...location, state: e.target.value })
                     }
-                    className="mt-1 block w-full h-[40px] bg-gray-100 text-black rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full h-[40px] bg-gray-100 text-gray-900 rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 sm:text-md transition duration-200 ease-in-out"
                     required
                   />
                 </div>
-
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-md font-medium text-gray-800">
                     Country
                   </label>
                   <input
@@ -284,16 +293,16 @@ const ListingProject: React.FC = () => {
                     onChange={(e) =>
                       setLocation({ ...location, country: e.target.value })
                     }
-                    className="mt-1 block w-full h-[40px] bg-gray-100 text-black rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full h-[40px] bg-gray-100 text-gray-900 rounded-md px-3 border border-gray-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 sm:text-md transition duration-200 ease-in-out"
                     required
                   />
                 </div>
               </div>
 
-              <div className="flex justify-center">
+              <div className="text-center">
                 <button
                   type="submit"
-                  className="inline-block px-6 py-2 mt-4 text-white bg-indigo-600 rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="inline-block px-6 py-3 text-lg font-medium leading-6 text-white bg-blue-600 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200 ease-in-out"
                 >
                   List Property
                 </button>
@@ -301,10 +310,8 @@ const ListingProject: React.FC = () => {
             </form>
           </>
         ) : (
-          <div className="text-center">
-            <p className="text-xl text-gray-700 mb-4">
-              Please connect your wallet to list a property.
-            </p>
+          <div className="text-center text-2xl font-bold text-red-600">
+            Please Connect Your Wallet To List A New Property
           </div>
         )}
       </div>
