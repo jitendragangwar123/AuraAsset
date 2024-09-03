@@ -57,9 +57,9 @@ exports.getPropertyDatailsByTitle = async (req, res) => {
     try {
         let properties;
         if (title) {
-            properties = await Property.find({ title: new RegExp(title, "i") });
+            properties = await PropertyData.find({ title: new RegExp(title, "i") });
         } else {
-            properties = await Property.find();
+            properties = await PropertyData.find();
         }
         res.status(200).json(properties);
     } catch (error) {

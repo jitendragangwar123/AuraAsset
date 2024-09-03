@@ -30,10 +30,10 @@ const Header = () => {
         </div>
 
         <div className="flex items-center gap-4 ml-auto md:flex md:gap-8">
-          <Link href="/marketplace" legacyBehavior>
+          <Link href="/market-place" legacyBehavior>
             <a className="text-gery-300 text-xl hover:underline">Marketplace</a>
           </Link>
-          <Link href="/projectListing" legacyBehavior>
+          <Link href="/project-listing" legacyBehavior>
             <a className="text-gery-300 text-xl mr-2 hover:underline">
               Project Owner
             </a>
