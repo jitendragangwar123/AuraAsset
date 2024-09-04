@@ -38,7 +38,7 @@ const Header = () => {
               List Property
             </a>
           </Link>
-          <Link href="/portfolio" legacyBehavior>
+          <Link href="/investor-portfolio" legacyBehavior>
             <a className="text-gery-300 text-xl mr-2 hover:underline">
               Investor
             </a>
