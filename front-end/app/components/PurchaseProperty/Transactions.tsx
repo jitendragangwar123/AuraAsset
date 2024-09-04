@@ -94,7 +94,7 @@ function TransactionsTable() {
           <button
             type="button"
             className="bg-blue-600 py-3 px-8 rounded text-white hover:bg-blue-700 disabled:bg-gray-500 disabled:cursor-not-allowed"
-            onClick={() => router.push("/portfolio")}
+            onClick={() => router.push("/investor-portfolio")}
           >
             View Investments
           </button>
