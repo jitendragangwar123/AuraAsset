@@ -104,8 +104,6 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
 };
 
 const PropertyGallery: React.FC = () => {
-  const [selectedOption, setSelectedOption] =
-    useState<SingleValue<OptionType>>(null);
   const [selectedRadio, setSelectedRadio] = useState<string>("");
   const [properties, setProperties] = useState<PropertyCardProps[]>([]);
 
@@ -131,7 +129,6 @@ const PropertyGallery: React.FC = () => {
 
   const filteredProperties = properties.filter((property) => {
     return (
-      (!selectedOption || property.token_name === selectedOption.value) &&
       (!selectedRadio || property.status === selectedRadio)
     );
   });
