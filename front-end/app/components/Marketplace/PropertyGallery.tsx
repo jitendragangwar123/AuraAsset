@@ -93,9 +93,9 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
           },
           indexingValue: issuer.toLowerCase(),
         });
-        console.log("Attestation Done: ", attestationResponse);
+        console.log("Attestation Done: ", attestationResponse.attestationId);
         toast.dismiss();
-        toast.success(`Attestation Done!`);
+        toast.success(`Attestation Done with Attestation ID: ${attestationResponse.attestationId}`);
         setAttestationCompleted(true);
         queryAttestations();
       }
