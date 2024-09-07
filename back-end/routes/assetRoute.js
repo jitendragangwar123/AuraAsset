@@ -20,5 +20,4 @@ router
    .put("/:id/update-holding-tokens",assetController.updateHoldingTokens)
    .put("/:id/update-earned-yields",assetController.updateEarnedYields)
 
-
 module.exports = router;

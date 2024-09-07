@@ -1,5 +1,6 @@
 const cloudinary = require("../utils/cloudinary");
 const PropertyData = require("../models/propertySchema");
+const TransactionsData = require("../models/transactions")
 
 
 exports.welcomeMsg = async (req, res) => {
@@ -74,7 +75,6 @@ exports.getPropertiesByUserAddress = async (req, res) => {
             "userData.userAddress": userAddress,
         });
 
-
         const userProperties = properties.map((property) => {
             const userData = property.userData.find(
                 (user) => user.userAddress === userAddress
@@ -84,7 +84,6 @@ exports.getPropertiesByUserAddress = async (req, res) => {
                 userData,
             };
         });
-
 
         if (userProperties.length === 0) {
             return res
@@ -101,9 +100,7 @@ exports.getPropertiesByUserAddress = async (req, res) => {
 
 exports.updateHoldingTokens = async (req, res) => {
     const propertyId = req.params.id;
-    const { userAddress, earnedYield, value, holdingTokens } = req.body;
-
-
+    const { userAddress, earnedYield, value, holdingTokens } = req.body
     try {
         const property = await PropertyData.findById(propertyId);
         if (!property) {
@@ -147,7 +144,7 @@ exports.updateEarnedYields = async (req, res) => {
     const propertyId = req.params.id;
     const { userAddress, value, earnedYield } = req.body;
     try {
-        const property = await Property.findById(propertyId);
+        const property = await PropertyData.findById(propertyId);
 
 
         if (!property) {
@@ -178,12 +175,12 @@ exports.updateEarnedYields = async (req, res) => {
 
 exports.storeTransactionsData = async (req, res) => {
     try {
-        const { txnHash, investorAddress, tokenAmount, diamAmount, action, url } = req.body;
-        const newTransaction = new Transaction({
+        const { txnHash, investorAddress, tokenAmount, cryptoAmount, action, url } = req.body;
+        const newTransaction = new TransactionsData({
             txnHash,
             investorAddress,
             tokenAmount,
-            diamAmount,
+            cryptoAmount,
             action,
             url,
         });
@@ -195,14 +192,11 @@ exports.storeTransactionsData = async (req, res) => {
     }
 };
 
-
 exports.getTransactionsData = async (req, res) => {
     try {
-        const transactionData = await Transaction.find();
+        const transactionData = await TransactionsData.find();
         res.status(200).json(transactionData);
     } catch (error) {
         res.status(500).json({ error: "Failed to fetch properties" });
     }
 };
-
-
