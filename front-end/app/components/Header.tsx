@@ -30,6 +30,10 @@ const Header = () => {
         </div>
 
         <div className="flex items-center gap-4 ml-auto md:flex md:gap-8">
+          <Link href="/aura-usdcfaucet" legacyBehavior>
+            <a className="text-gery-300 text-xl hover:underline">Faucet Mint</a>
+          </Link>
+
           <Link href="/market-place" legacyBehavior>
             <a className="text-gery-300 text-xl hover:underline">Marketplace</a>
           </Link>
