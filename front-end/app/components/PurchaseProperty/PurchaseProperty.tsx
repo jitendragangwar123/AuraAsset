@@ -153,7 +153,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
         </div>
         <div className="flex justify-between">
           <span className="font-semibold">Total Cost:</span>
-          <span>{quantity * Number(total_price)} ETH</span>
+          <span>{quantity * Number(total_price)} USDC</span>
         </div>
         <div className="mt-4">
           <button
