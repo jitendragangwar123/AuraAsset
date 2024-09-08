@@ -68,7 +68,7 @@ contract AuraAssetUSDC is UUPSUpgradeable, OwnableUpgradeable, ERC20Upgradeable,
 
     /// @dev Allows admin to mint tokens to a specified address once every 1 days.
     /// @param _address The address to mint tokens to.
-    function faucetMint(address _address) public onlyAdmin ifAlreadyMinted(_address) {
+    function faucetMint(address _address) public ifAlreadyMinted(_address) {
         lastMinted[_address] = block.timestamp;
         _mint(_address, 10000 * (10 ** uint256(decimals())));
         emit FaucetMinted(_address, 10000 * (10 ** uint256(decimals())));

@@ -1,10 +1,5 @@
-const { task } = require("hardhat/config")
-// import { ethers, upgrades, network } from "hardhat"
-// import f from "fs"
-const { updateContractsJson } = require("../utils/updateContracts")
-// import { createSubgraphConfig } from "../utils/subgraph"
-// import { getABI } from "../utils/getABI"
-// const { HardhatRuntimeEnvironment } = require("hardhat/types");
+import { network } from "hardhat";
+import { updateContractsJson } from "../utils/updateContracts";
 
 const FacetCutAction = { Add: 0, Replace: 1, Remove: 2 }
 
@@ -12,22 +7,24 @@ async function deploy() {
     let tx, txr
     const accounts = await ethers.getSigners()
     const networkName = network.name
+    console.log("networkName: ", networkName)
     const chainId = network.config.chainId
+    console.log("chainId: ", chainId);
     const startBlock = await ethers.provider.getBlock("latest")
-    console.log(startBlock.number)
+    console.log("startBlock: ", startBlock.number)
 
     const owner = accounts[0].address
+    console.log("owner:", owner)
 
     // Deploy AuraAssetRegistry contract
     // const auraAssetUSDCFactory = await hre.ethers.getContractFactory("AuraAssetUSDC")
-    // const auraAssetUSDCContract = await upgrades.deployProxy(auraAssetUSDCFactory, ["AuraAssetUSDC", "AuraAssetUSDC", owner])
+    // const auraAssetUSDCContract = await upgrades.deployProxy(auraAssetUSDCFactory, ["AuraUSDC", "AuraUSDC", owner])
     // await auraAssetUSDCContract.waitForDeployment()
     // console.log("AuraAssetUSDC is deployed to:", auraAssetUSDCContract.target)
-    // const AuraAssetUSDCAddress = "0xF013Fc588FE3c76bb186b323d2731EE59524613e";
     // const AuraAssetUSDCAddress = auraAssetUSDCContract.target
-    const AuraAssetUSDCAddress = "0x6427E8BAfd676c72313e030Be0198174762b4714"
+    const AuraAssetUSDCAddress = "0xe30f4f7f7099668A8145B1025b69dd1Cda4493Bd"
 
-    // Deploy Deposit contract
+    // // Deploy Deposit contract
     const DepositFactory = await hre.ethers.getContractFactory("Deposit")
     const depositContract = await upgrades.deployProxy(DepositFactory, [AuraAssetUSDCAddress, owner])
     await depositContract.waitForDeployment()
@@ -60,7 +57,7 @@ async function deploy() {
     console.log("AuraAssetRegistryFacet deployed:", auraAssetRegistryFacet.target)
 
     const AuraAssetViewFacet = await ethers.getContractFactory("AuraAssetViewFacet")
-    const auraAssetViewFacet = await auraAssetViewFacet.deploy()
+    const auraAssetViewFacet = await AuraAssetViewFacet.deploy()
     await auraAssetViewFacet.waitForDeployment()
     console.log("AuraAssetViewFacet deployed:", auraAssetViewFacet.target)
 
@@ -74,7 +71,7 @@ async function deploy() {
     await diamond.waitForDeployment()
     console.log("Diamond deployed:", diamond.target)
 
-    const FacetNames = ["DiamondLoupeFacet", "OwnershipFacet", "AuraAssetRegistryFacet", "AuraAssetViewFacet"]
+    const FacetNames = ["DiamondLoupeFacet", "OwnershipFacet", "AuraAssetInteractionFacet", "AuraAssetRegistryFacet", "AuraAssetViewFacet"]
 
     const diamondLoupeSelectors = ["0xcdffacc6", "0x52ef6b2c", "0xadfca15e", "0x7a0ed627", "0x01ffc9a7"]
     const ownershipSelectors = ["0x8da5cb5b", "0xf2fde38b"]
@@ -121,7 +118,7 @@ async function deploy() {
         "0xd235b75f", // getSPVDocument
         "0x914dcff6" // checkForTargetFundsFulfilled
     ]
-    const cut = []
+    const cut: any = []
 
     // 0xc354bd6e
     cut.push({
@@ -181,18 +178,18 @@ async function deploy() {
     let contracts = [
         { name: "AuraAssetUSDC", address: AuraAssetUSDCAddress },
         { name: "Deposit", address: depositContract.target },
-        { name: "DiamondLoupeFacet", address: diamondLoupeFacet.target },
-        { name: "OwnershipFacet", address: ownershipFacet.target },
-        { name: "DiamondCutFacet", address: diamondCutFacet.target },
-        { name: "DiamondInit", address: diamondInit.target },
         { name: "Diamond", address: diamond.target },
+        { name: "DiamondInit", address: diamondInit.target },
+        { name: "DiamondLoupeFacet", address: diamondLoupeFacet.target },
+        { name: "DiamondCutFacet", address: diamondCutFacet.target },
+        { name: "OwnershipFacet", address: ownershipFacet.target },
+        { name: "AuraAssetInteractionFacet", address: auraAssetInteractionFacet.target },
         { name: "AuraAssetRegistryFacet", address: auraAssetRegistryFacet.target },
         { name: "AuraAssetViewFacet", address: auraAssetViewFacet.target },
         { name: "StartBlock", address: startBlock.number }
     ]
 
     updateContractsJson(contracts)
-    // getABI()
     console.table(contracts)
     console.log("Deployment finished!")
 }

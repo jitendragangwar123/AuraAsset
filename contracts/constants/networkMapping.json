@@ -11,18 +11,5 @@
         "AuraAssetRegistryFacet": "0x984DE3A95baeB9Ee9cB7047E605480e0BdDAbb7d",
         "AuraAssetViewFacet": "0x04dC87a8913362EfaAE26378eA35E0e25Cf704fB",
         "StartBlock": 6654462
-    },
-    "localhost": {
-        "AuraAssetUSDC": "0xe30f4f7f7099668A8145B1025b69dd1Cda4493Bd",
-        "Deposit": "0x5f07e4Ec514253697953753eCf8AAbDD0f8F84ef",
-        "Diamond": "0xc308712b7d66a805f7bCd9028ABE32d11C0A2917",
-        "DiamondInit": "0xe6e4aA59F48337ed2ac60f148eF43956156D20AF",
-        "DiamondLoupeFacet": "0x9c0f2F2eaBF4A03D4581dFdfB2aAFCa3fF0f26C7",
-        "DiamondCutFacet": "0xcd96D36cd8aEe0bd76ed1c0054c1289739d2AD3D",
-        "OwnershipFacet": "0x703107de305EE18340DF3a94eF245EE1d4488E1A",
-        "AuraAssetInteractionFacet": "0x9bAe9b1Cc2F9E1a4820D2204A899876f8F9c6A41",
-        "AuraAssetRegistryFacet": "0x984DE3A95baeB9Ee9cB7047E605480e0BdDAbb7d",
-        "AuraAssetViewFacet": "0x04dC87a8913362EfaAE26378eA35E0e25Cf704fB",
-        "StartBlock": 6654462
     }
 }

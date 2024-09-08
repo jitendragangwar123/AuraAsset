@@ -2,8 +2,10 @@ import { HardhatUserConfig } from "hardhat/config"
 import "@nomicfoundation/hardhat-toolbox"
 import "@openzeppelin/hardhat-upgrades"
 import "@typechain/hardhat";
-import "./tasks"
+// import "./tasks"
 import "solidity-docgen"
+import "hardhat-abi-exporter"
+import "hardhat-contract-sizer"
 
 
 import * as dotenv from "dotenv"
@@ -30,12 +32,18 @@ const config: HardhatUserConfig = {
     localhost: {
       chainId: 31337,
       forking: {
-        url: "https://api-sepolia.arbiscan.io/api"
+        // url: "https://api-sepolia.arbiscan.io/api",
+        url: `${process.env.ETHEREUM_SEPOLIA_RPC_URL}`
       }
     },
-    sepolia: {
+    arbSepolia: {
       url: process.env.ARBITRUM_RPC_URL,
-      accounts: [`${process.env.PRIVATE_KEY}`,`${process.env.PRIVATE_KEY_AURA}`]
+      accounts: [`${process.env.PRIVATE_KEY}`]
+    },
+    ethSepolia: {
+      chainId: 11155111,
+      url: process.env.ETHEREUM_SEPOLIA_RPC_URL,
+      accounts: [`${process.env.PRIVATE_KEY}`]
     },
     devnet: {
       url: "",
@@ -49,6 +57,26 @@ const config: HardhatUserConfig = {
   typechain: {
     outDir: "typechain",
     target: "ethers-v6",
+  },
+  abiExporter: {
+    path: "./constants/abis",
+    runOnCompile: true,
+    clear: true,
+    flat: true,
+    spacing: 4,
+    only: [
+      "Deposit",
+      "Diamond",
+      "OwnershipFacet",
+      "DiamondLoupeFacet",
+      "AuraAssetInteractionFacet",
+      "AuraAssetRegistryFacet",
+      "AuraAssetViewFacet",
+      "AuraAssetUSDC"
+    ]
+  },
+  sourcify: {
+    enabled: false
   },
   etherscan: {
     apiKey: {
@@ -78,6 +106,20 @@ const config: HardhatUserConfig = {
     outputDir: "./docs",
     pages: "files",
     collapseNewlines: true
+  },
+  contractSizer: {
+    alphaSort: true,
+    disambiguatePaths: false,
+    runOnCompile: false,
+    strict: true
+    // only: [":ERC20$"]
+  },
+  gasReporter: {
+    currency: "USD",
+    enabled: false,
+    excludeContracts: [],
+    showTimeSpent: true,
+    token: "MATIC"
   }
 }
 
