@@ -2,7 +2,17 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { useAccount } from "wagmi";
+
+import {
+  DIAMOND_ADDRESS,
+  DIAMOND_REGISTRY_ABI,
+} from "../../../constants/index";
+import {
+  useAccount,
+  useWaitForTransactionReceipt,
+  useWriteContract,
+} from "wagmi";
+import { ethers } from "ethers";
 
 type Location = {
   address: string;
@@ -24,7 +34,7 @@ type PropertyData = {
 };
 
 const ListingProject: React.FC = () => {
-  const { isConnected } = useAccount();
+  const { isConnected, address } = useAccount();
   const [title, setTitle] = useState<string>("");
   const [desc, setDesc] = useState<string>("");
   const [totalPrice, setTotalPrice] = useState<string>("");
@@ -41,6 +51,20 @@ const ListingProject: React.FC = () => {
   const [propertyType, setPropertyType] = useState<string>("");
 
   const router = useRouter();
+
+  const {
+    data: hash,
+    isPending: isMinting,
+    writeContract,
+  } = useWriteContract();
+
+  const {
+    isLoading: isConfirming,
+    isSuccess: isConfirmed,
+    isError: isFailed,
+  } = useWaitForTransactionReceipt({
+    hash,
+  });
 
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
@@ -67,6 +91,32 @@ const ListingProject: React.FC = () => {
 
     images.forEach((image) => {
       formData.append("images", image);
+    });
+
+    const assetDescription = {
+      assetTypeId: 1,
+      owner: address,
+      name: title,
+      location: JSON.stringify(location),
+      totalValue: noOfTokens,
+    };
+    const partitionDescriptions = [
+      {
+        partitionName: "Partition 1",
+        totalValue: noOfTokens,
+        tokenPrice: totalPrice,
+        rentalYield: ethers.parseUnits("5", 6),
+        targetIRR: apy,
+        annualAppreciation: ethers.parseUnits("3", 6),
+        targetFunds: ethers.parseUnits("10", 6),
+      },
+    ];
+
+    writeContract({
+      address: DIAMOND_ADDRESS,
+      abi: DIAMOND_REGISTRY_ABI,
+      functionName: "addAsset",
+      args: [assetDescription, partitionDescriptions, address],
     });
 
     try {
