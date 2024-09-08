@@ -104,7 +104,7 @@ const ApproveAndDepositUSDC = () => {
         {isConnected ? (
           <>
             <h1 className="text-3xl font-semibold text-center text-blue-500 mb-6">
-              Approve And Deposit Aura USDC Token
+              Deposit Aura USDC Token
             </h1>
             <div className="w-full max-w-md mx-auto">
               <div className="flex items-center border border-gray-300 p-2 rounded-lg mb-4 bg-gray-50">
@@ -112,7 +112,7 @@ const ApproveAndDepositUSDC = () => {
                   type="number"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
-                  placeholder="Enter amount to mint"
+                  placeholder="Enter amount to deposit"
                   className="flex-grow text-gray-800 bg-transparent p-2 rounded-lg focus:outline-none"
                 />
               </div>
@@ -128,7 +128,7 @@ const ApproveAndDepositUSDC = () => {
                   ? "Approving..."
                   : isConfirmingApprove
                   ? "Waiting for confirmation..."
-                  : "Approve Token"}
+                  : "Approve"}
               </button>
 
               {isConfirmedApprove && (
@@ -159,7 +159,7 @@ const ApproveAndDepositUSDC = () => {
                   ? "Depositing..."
                   : isConfirmingDeposit
                   ? "Waiting for confirmation..."
-                  : "Deposit Token"}
+                  : "Deposit"}
               </button>
 
               {isConfirmedDeposit && (
