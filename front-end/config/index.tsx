@@ -1,7 +1,7 @@
 import { defaultWagmiConfig } from "@web3modal/wagmi/react/config";
 
 import { cookieStorage, createStorage } from "wagmi";
-import { sepolia, mainnet } from "wagmi/chains";
+import { hederaTestnet,sepolia, mainnet } from "wagmi/chains";
 
 export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
 
@@ -14,7 +14,7 @@ const metadata = {
     icons: ["https://avatars.githubusercontent.com/u/37784886"]
 }
 
-const chains = [sepolia, mainnet] as const;
+const chains = [hederaTestnet,sepolia, mainnet] as const;
 
 export const config = defaultWagmiConfig({
     chains,
