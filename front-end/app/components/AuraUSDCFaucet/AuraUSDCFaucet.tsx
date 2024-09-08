@@ -11,7 +11,7 @@ import { AURA_USDC_ADDRESS, AURA_USDC_ABI } from "../../../constants/index";
 
 const MintAuraUSDC = () => {
   const [addressUSDC, setAddressUSDC] = useState(
-    "0xe30f4f7f7099668A8145B1025b69dd1Cda4493Bd"
+    "0xf30717833D5EEBba378eC9cb2907de263F6C71d7"
   );
   const [copied, setCopied] = useState(false);
   const { isConnected, address } = useAccount();
