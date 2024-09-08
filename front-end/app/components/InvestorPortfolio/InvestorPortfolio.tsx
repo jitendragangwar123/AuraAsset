@@ -68,7 +68,7 @@ const PropertyCard: React.FC<
       setIsLoading(true);
       toast.loading("Wait for Transactions...");
       const storedTransactionsData = await fetch(
-        "https://example.com/storeTransactionsData",
+        "https://aura-asset-back-end.vercel.app/storeTransactionsData",
         {
           method: "POST",
           headers: {
@@ -80,7 +80,7 @@ const PropertyCard: React.FC<
             tokenAmount: holdingTokens,
             diamAmount: earnedYield.toString(),
             action: "Yield Claimed",
-            url: `https://example.com/${"txnHash"}`,
+            url: `https://sepolia.etherscan.io/tx/${"txnHash"}`,
           }),
         }
       );
@@ -160,7 +160,7 @@ const PortfolioOverview: React.FC = () => {
         return;
       }
       const response = await fetch(
-        `http://localhost:8000/get-properties-by-user-address?userAddress=${address}`
+        `https://aura-asset-back-end.vercel.app/get-properties-by-user-address?userAddress=${address}`
       );
       if (!response.ok) {
         toast.error("Investor don't have any asset");

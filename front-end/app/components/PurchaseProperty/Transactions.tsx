@@ -118,7 +118,7 @@ function TransactionsTable() {
                     Token Amount
                   </th>
                   <th className="border-b p-4 text-gray-800 dark:text-gray-200">
-                    DIAM Amount
+                    USDC Amount
                   </th>
                   <th className="border-b p-4 text-gray-800 dark:text-gray-200">
                     Action

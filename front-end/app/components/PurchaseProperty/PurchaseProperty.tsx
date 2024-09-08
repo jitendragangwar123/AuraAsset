@@ -56,7 +56,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
       const status = 200;
       if (status === 200) {
         const storedTransactionsData = await fetch(
-          "https:///storeTransactionsData",
+          "https://aura-asset-back-end.vercel.app/storeTransactionsData",
           {
             method: "POST",
             headers: {
@@ -68,7 +68,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
               tokenAmount: quantity,
               diamAmount: (quantity * Number(total_price)).toString(),
               action: "Asset Bought",
-              url: `/${"txnHash"}`,
+              url: `https://sepolia.etherscan.io/tx/${"txnHash"}`,
             }),
           }
         );
