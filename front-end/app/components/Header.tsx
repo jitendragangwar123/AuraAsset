@@ -31,7 +31,10 @@ const Header = () => {
 
         <div className="flex items-center gap-4 ml-auto md:flex md:gap-8">
           <Link href="/aura-usdcfaucet" legacyBehavior>
-            <a className="text-gery-300 text-xl hover:underline">Faucet Mint</a>
+            <a className="text-gery-300 text-xl hover:underline">Faucet</a>
+          </Link>
+          <Link href="/deposit-aurausdc" legacyBehavior>
+            <a className="text-gery-300 text-xl hover:underline">Deposit</a>
           </Link>
 
           <Link href="/market-place" legacyBehavior>
