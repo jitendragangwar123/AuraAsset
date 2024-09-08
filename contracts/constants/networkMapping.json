@@ -11,5 +11,18 @@
         "AuraAssetRegistryFacet": "0x984DE3A95baeB9Ee9cB7047E605480e0BdDAbb7d",
         "AuraAssetViewFacet": "0x04dC87a8913362EfaAE26378eA35E0e25Cf704fB",
         "StartBlock": 6654462
+    },
+    "hederaTestnet": {
+        "AuraAssetUSDC": "0xf30717833D5EEBba378eC9cb2907de263F6C71d7",
+        "Deposit": "0x7a5E2CFc4361E556e3973CCE2810BDf4bd890737",
+        "Diamond": "0x57681598bFC1583A06A093359fbDfb9aDAecBa34",
+        "DiamondInit": "0x2Fcd153e5A6d296707Bba784641698447e84c2Ca",
+        "DiamondLoupeFacet": "0x416C845B0475dfADA8B4AeCABBd53Da8678f8a97",
+        "DiamondCutFacet": "0x6556B42c67EDDBD77f9641e5fa7927CcFc2cfb9A",
+        "OwnershipFacet": "0xcEd17961ae1BE44Bef29dD5eB5600Be8984E6731",
+        "AuraAssetInteractionFacet": "0xB68283110Ef23eFc1e1fD35CFD7bc9fbbdB06AA9",
+        "AuraAssetRegistryFacet": "0x08B23C0dCe3Eb472e647289a46120D39227d3702",
+        "AuraAssetViewFacet": "0xcDd92F003B6026E429bb378089704EBFcA9e504e",
+        "StartBlock": 8915248
     }
 }

@@ -45,6 +45,10 @@ const config: HardhatUserConfig = {
       url: process.env.ETHEREUM_SEPOLIA_RPC_URL,
       accounts: [`${process.env.PRIVATE_KEY}`]
     },
+    hederaTestnet: {
+      url: process.env.TESTNET_ENDPOINT,
+      accounts: [`${process.env.TESTNET_OPERATOR_PRIVATE_KEY}`]
+    },
     devnet: {
       url: "",
       chainId: 713715,

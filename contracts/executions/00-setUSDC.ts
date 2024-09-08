@@ -21,13 +21,13 @@ const main = async () => {
     const deposit: Deposit = new ethers.Contract(netMap[networkName].Deposit, DepositABI, deployer)
     const usdc: AuraAssetUSDC = new ethers.Contract(netMap[networkName].AuraAssetUSDC, AuraAssetUSDCABI, deployer)
 
-    tx = await usdc.balanceOf("0xe30f4f7f7099668A8145B1025b69dd1Cda4493Bd");
+    tx = await usdc.balanceOf("0x2dC727b15203992B65D7ADbc0108781f1Cb1F9F3");
     console.log("balance", tx);
 
     // tx = await usdc.connect(rajeeb).approve(netMap[networkName].Deposit, "1000000000000000000");
     // await tx.wait();
-    // tx = await deposit.connect(rajeeb).deposit("1000000000000000000");
-    // await tx.wait()
+    tx = await deposit.usdc();
+    console.log("usdc", tx);
     // tx = await deposit.connect(rajeeb).balances(rajeeb.address);
     // console.log(tx)
     // tx = await usdc.balanceOf(rajeeb.address);

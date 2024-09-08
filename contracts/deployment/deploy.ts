@@ -17,16 +17,16 @@ async function deploy() {
     console.log("owner:", owner)
 
     // Deploy AuraAssetRegistry contract
-    // const auraAssetUSDCFactory = await hre.ethers.getContractFactory("AuraAssetUSDC")
-    // const auraAssetUSDCContract = await upgrades.deployProxy(auraAssetUSDCFactory, ["AuraUSDC", "AuraUSDC", owner])
-    // await auraAssetUSDCContract.waitForDeployment()
-    // console.log("AuraAssetUSDC is deployed to:", auraAssetUSDCContract.target)
+    const auraAssetUSDCFactory = await hre.ethers.getContractFactory("AuraAssetUSDC")
+    const auraAssetUSDCContract = await upgrades.deployProxy(auraAssetUSDCFactory, ["AuraUSDC", "AuraUSDC", owner])
+    await auraAssetUSDCContract.waitForDeployment()
+    console.log("AuraAssetUSDC is deployed to:", auraAssetUSDCContract.target)
     // const AuraAssetUSDCAddress = auraAssetUSDCContract.target
-    const AuraAssetUSDCAddress = "0xe30f4f7f7099668A8145B1025b69dd1Cda4493Bd"
+    // const AuraAssetUSDCAddress = "0xe30f4f7f7099668A8145B1025b69dd1Cda4493Bd"
 
     // // Deploy Deposit contract
     const DepositFactory = await hre.ethers.getContractFactory("Deposit")
-    const depositContract = await upgrades.deployProxy(DepositFactory, [AuraAssetUSDCAddress, owner])
+    const depositContract = await upgrades.deployProxy(DepositFactory, [auraAssetUSDCContract.target, owner])
     await depositContract.waitForDeployment()
     console.log(`Deposit is deployed to:`, depositContract.target)
 
@@ -176,7 +176,7 @@ async function deploy() {
     }
 
     let contracts = [
-        { name: "AuraAssetUSDC", address: AuraAssetUSDCAddress },
+        { name: "AuraAssetUSDC", address:  auraAssetUSDCContract.target },
         { name: "Deposit", address: depositContract.target },
         { name: "Diamond", address: diamond.target },
         { name: "DiamondInit", address: diamondInit.target },
